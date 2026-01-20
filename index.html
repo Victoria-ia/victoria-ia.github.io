@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VictorIA - Automatisation Intelligente pour Entreprises</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0A0E27;
+            --secondary: #1A1F3A;
+            --accent: #FFB800;
+            --accent-light: #FFC933;
+            --text: #E8E9F3;
+            --text-muted: #A0A3BD;
+            --gradient: linear-gradient(135deg, #FFB800 0%, #FF8A00 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--primary);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1.5rem 5%;
+            border-bottom: 1px solid rgba(255, 184, 0, 0.1);
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .cta-nav {
+            background: var(--gradient);
+            color: var(--primary);
+            padding: 0.7rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 184, 0, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 8rem 5% 4rem;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(255, 184, 0, 0.15) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.2); opacity: 0.5; }
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            animation: slideUp 1s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-text h1 .gradient-text {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text p {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            animation: slideUp 1s ease-out 0.2s both;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            animation: slideUp 1s ease-out 0.4s both;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: var(--primary);
+            padding: 1.2rem 2.5rem;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255, 184, 0, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text);
+            padding: 1.2rem 2.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            border: 2px solid rgba(255, 184, 0, 0.3);
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            background: rgba(255, 184, 0, 0.1);
+        }
+
+        .hero-visual {
+            position: relative;
+            animation: slideUp 1s ease-out 0.3s both;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .stat-card {
+            background: var(--secondary);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 184, 0, 0.1);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Problem Section */
+        .problem-section {
+            padding: 8rem 5%;
+            background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+
+        .section-header {
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            text-align: center;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: rgba(255, 184, 0, 0.1);
+            color: var(--accent);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255, 184, 0, 0.2);
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+        }
+
+        .problem-cards {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .problem-card {
+            background: var(--primary);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 184, 0, 0.1);
+            transition: all 0.5s;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .problem-card:nth-child(1) { animation-delay: 0.1s; }
+        .problem-card:nth-child(2) { animation-delay: 0.2s; }
+        .problem-card:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .problem-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-10px);
+        }
+
+        .problem-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .problem-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .problem-card p {
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 8rem 5%;
+            background: var(--primary);
+        }
+
+        .services-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            gap: 3rem;
+        }
+
+        .service-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            padding: 3rem;
+            background: var(--secondary);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 184, 0, 0.05);
+            transition: border-color 0.3s;
+        }
+
+        .service-item:hover {
+            border-color: rgba(255, 184, 0, 0.2);
+        }
+
+        .service-item:nth-child(even) {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .service-item:nth-child(even) .service-content {
+            order: 2;
+        }
+
+        .service-item:nth-child(even) .service-demo {
+            order: 1;
+        }
+
+        .service-icon-box {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .service-content h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-content p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .service-features li {
+            padding: 0.7rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--text-muted);
+        }
+
+        .service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .service-demo {
+            background: rgba(10, 14, 39, 0.5);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 184, 0, 0.1);
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        /* Video Section */
+        .video-section {
+            padding: 8rem 5%;
+            background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+
+        .video-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--primary);
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 184, 0, 0.2);
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-placeholder {
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .video-placeholder p {
+            color: var(--text-muted);
+            margin-top: 1rem;
+        }
+
+        /* Process Section */
+        .process-section {
+            padding: 8rem 5%;
+            background: var(--primary);
+        }
+
+        .process-steps {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            position: relative;
+        }
+
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 60px;
+            left: 16.6%;
+            right: 16.6%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--accent) 33%, rgba(255, 184, 0, 0.3) 33%, rgba(255, 184, 0, 0.3) 66%, rgba(255, 184, 0, 0.1) 66%);
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 120px;
+            height: 120px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 0 auto 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .process-step h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .process-step p {
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 8rem 5%;
+            background: var(--secondary);
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-content p {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+        }
+
+        .cta-highlight {
+            background: rgba(255, 184, 0, 0.1);
+            border: 2px solid var(--accent);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 3rem 0;
+        }
+
+        .cta-highlight p {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin: 0;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            padding: 3rem 5%;
+            border-top: 1px solid rgba(255, 184, 0, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 968px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .problem-cards,
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .service-item,
+            .service-item:nth-child(even) {
+                grid-template-columns: 1fr;
+            }
+
+            .service-item:nth-child(even) .service-content {
+                order: 1;
+            }
+
+            .service-item:nth-child(even) .service-demo {
+                order: 2;
+            }
+
+            .process-steps::before {
+                display: none;
+            }
+
+            .section-header h2 {
+                font-size: 2.2rem;
+            }
+
+            .cta-content h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">VictorIA</div>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#video">Présentation</a></li>
+                <li><a href="#processus">Processus</a></li>
+            </ul>
+            <a href="#audit" class="cta-nav">Audit Gratuit</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>
+                    Votre entreprise perd du temps <span class="gradient-text">sans le savoir</span>
+                </h1>
+                <p>
+                    Des heures gaspillées sur des tâches répétitives que l'IA pourrait gérer en secondes. 
+                    Découvrez le potentiel inexploité de votre entreprise.
+                </p>
+                <div class="hero-cta">
+                    <a href="#audit" class="btn-primary">
+                        Demander un audit gratuit →
+                    </a>
+                    <a href="#services" class="btn-secondary">Découvrir nos solutions</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">80%</div>
+                        <div class="stat-label">de temps gagné sur la saisie</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">automatisation continue</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">0€</div>
+                        <div class="stat-label">pour votre audit personnalisé</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">solutions sur-mesure</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem-section">
+        <div class="section-header">
+            <span class="section-tag">Le Problème</span>
+            <h2>Ces tâches qui vous volent des journées entières</h2>
+            <p>Vous ne réalisez pas combien de temps vous perdez. C'est normal - personne ne mesure le temps passé sur ces micro-tâches quotidiennes.</p>
+        </div>
+        <div class="problem-cards">
+            <div class="problem-card">
+                <div class="problem-icon">📄</div>
+                <h3>Saisie manuelle</h3>
+                <p>Recopier des informations de documents scannés, factures, emails... Des heures perdues chaque semaine dans des tâches sans valeur ajoutée.</p>
+            </div>
+            <div class="problem-card">
+                <div class="problem-icon">🗂️</div>
+                <h3>Classement et tri</h3>
+                <p>Organiser vos factures, ranger vos documents, catégoriser vos données... Un casse-tête chronophage qui revient sans cesse.</p>
+            </div>
+            <div class="problem-card">
+                <div class="problem-icon">📊</div>
+                <h3>Synthèse d'informations</h3>
+                <p>Lire, analyser, résumer des documents. Compiler des rapports. Des tâches intellectuelles répétitives qui épuisent votre équipe.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="section-header">
+            <span class="section-tag">Nos Solutions</span>
+            <h2>L'IA au service de votre productivité</h2>
+            <p>Des outils intelligents qui s'adaptent à VOS besoins spécifiques</p>
+        </div>
+        <div class="services-grid">
+            
+            <!-- Service 1 -->
+            <div class="service-item">
+                <div class="service-content">
+                    <div class="service-icon-box">📸</div>
+                    <h3>Comptabilité automatisée</h3>
+                    <p>Prenez en photo vos factures, reçus et documents. L'IA extrait, analyse et classe automatiquement toutes les informations dans votre système comptable.</p>
+                    <ul class="service-features">
+                        <li>Reconnaissance automatique des montants et dates</li>
+                        <li>Classification par catégorie (achat, dépense, facture...)</li>
+                        <li>Séparation perso/pro automatique</li>
+                        <li>Export direct vers votre logiciel comptable</li>
+                    </ul>
+                </div>
+                <div class="service-demo">
+                    <p>📱 Démo interactive disponible bientôt</p>
+                </div>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="service-item">
+                <div class="service-content">
+                    <div class="service-icon-box">🎙️</div>
+                    <h3>Assistant vocal intelligent</h3>
+                    <p>Dictez vos notes, comptes-rendus ou idées. L'IA structure, résume et organise automatiquement vos informations vocales.</p>
+                    <ul class="service-features">
+                        <li>Transcription en temps réel</li>
+                        <li>Structuration automatique par thème</li>
+                        <li>Résumés et points d'action</li>
+                        <li>Recherche vocale dans votre base de données</li>
+                    </ul>
+                </div>
+                <div class="service-demo">
+                    <p>🎤 Démo interactive disponible bientôt</p>
+                </div>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="service-item">
+                <div class="service-content">
+                    <div class="service-icon-box">📑</div>
+                    <h3>Analyse documentaire automatique</h3>
+                    <p>Téléversez vos contrats, rapports, emails. L'IA extrait les données clés, génère des synthèses et alerte sur les points importants.</p>
+                    <ul class="service-features">
+                        <li>Extraction de données structurées</li>
+                        <li>Génération de résumés exécutifs</li>
+                        <li>Détection des éléments critiques</li>
+                        <li>Comparaison automatique de documents</li>
+                    </ul>
+                </div>
+                <div class="service-demo">
+                    <p>📄 Démo interactive disponible bientôt</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section id="video" class="video-section">
+        <div class="section-header">
+            <span class="section-tag">Découvrez VictorIA</span>
+            <h2>2 minutes pour comprendre comment on peut vous aider</h2>
+        </div>
+        <div class="video-container">
+            <div class="video-placeholder">
+                <h3 style="font-size: 2rem; margin-bottom: 1rem;">🎬</h3>
+                <p>Insérez ici votre vidéo de présentation (1-2 minutes)</p>
+                <p style="margin-top: 1rem; font-size: 0.9rem;">
+                    Pour intégrer votre vidéo :<br>
+                    Remplacez cette section par : &lt;video controls&gt; ou &lt;iframe&gt; YouTube/Vimeo
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="processus" class="process-section">
+        <div class="section-header">
+            <span class="section-tag">Comment ça marche</span>
+            <h2>Un processus simple et sans engagement</h2>
+        </div>
+        <div class="process-steps">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <h3>Audit gratuit</h3>
+                <p>Nous analysons vos processus actuels et identifions les opportunités d'automatisation que vous ne soupçonniez pas.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <h3>Devis personnalisé</h3>
+                <p>Nous vous proposons des solutions sur-mesure adaptées à vos besoins réels, avec un retour sur investissement clair.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <h3>Mise en place</h3>
+                <p>Nous développons et déployons vos outils d'automatisation. Formation de votre équipe incluse.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section id="audit" class="cta-section">
+        <div class="cta-content">
+            <h2>Prêt à découvrir votre potentiel caché ?</h2>
+            <p>
+                Chaque jour sans automatisation, c'est du temps et de l'argent perdus. 
+                Notre audit gratuit vous révèle exactement combien vous pourriez gagner.
+            </p>
+            
+            <div class="cta-highlight">
+                <p>✨ Audit 100% gratuit • Sans engagement • Résultats concrets ✨</p>
+            </div>
+
+            <a href="mailto:contact@victoria.com?subject=Demande d'audit gratuit" class="btn-primary" style="font-size: 1.2rem; padding: 1.5rem 3rem;">
+                Demander mon audit gratuit →
+            </a>
+
+            <p style="margin-top: 2rem; font-size: 0.95rem; color: var(--text-muted);">
+                Ou contactez-nous directement : contact@victoria.com
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="logo">VictorIA</div>
+            <div class="footer-links">
+                <a href="#services">Services</a>
+                <a href="#video">Présentation</a>
+                <a href="#audit">Contact</a>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">
+                © 2026 VictorIA - Automatisation Intelligente
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
