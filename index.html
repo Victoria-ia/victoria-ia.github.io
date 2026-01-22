@@ -514,27 +514,111 @@
             line-height: 1.7;
         }
 
-        /* CTA Section */
-        .cta-section {
+        /* Form Section */
+        .form-section {
             padding: 8rem 5%;
             background: var(--secondary);
-            text-align: center;
         }
 
-        .cta-content {
-            max-width: 900px;
+        .form-container {
+            max-width: 700px;
             margin: 0 auto;
+            background: var(--primary);
+            padding: 3rem;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 184, 0, 0.2);
         }
 
-        .cta-content h2 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
         }
 
-        .cta-content p {
-            font-size: 1.3rem;
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 1rem 1.2rem;
+            background: var(--secondary);
+            border: 2px solid rgba(255, 184, 0, 0.1);
+            border-radius: 12px;
+            color: var(--text);
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(26, 31, 58, 0.8);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
             color: var(--text-muted);
-            margin-bottom: 3rem;
+        }
+
+        .submit-btn {
+            background: var(--gradient);
+            color: var(--primary);
+            padding: 1.2rem 2rem;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255, 184, 0, 0.4);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .form-status {
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            display: none;
+        }
+
+        .form-status.success {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #22c55e;
+            display: block;
+        }
+
+        .form-status.error {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #ef4444;
+            display: block;
         }
 
         .cta-highlight {
@@ -542,14 +626,58 @@
             border: 2px solid var(--accent);
             border-radius: 16px;
             padding: 2rem;
-            margin: 3rem 0;
+            margin-bottom: 3rem;
         }
 
         .cta-highlight p {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             color: var(--accent);
             margin: 0;
             font-weight: 600;
+        }
+
+        /* Complementary Services Section */
+        .complementary-section {
+            padding: 8rem 5%;
+            background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+
+        .complementary-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .complementary-card {
+            background: var(--primary);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 184, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .complementary-card:hover {
+            border-color: rgba(255, 184, 0, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .comp-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .complementary-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--text);
+        }
+
+        .complementary-card p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 0.95rem;
         }
 
         /* Footer */
@@ -598,7 +726,8 @@
             }
 
             .problem-cards,
-            .process-steps {
+            .process-steps,
+            .complementary-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -623,8 +752,14 @@
                 font-size: 2.2rem;
             }
 
-            .cta-content h2 {
-                font-size: 2.5rem;
+            .form-container {
+                padding: 2rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
             }
         }
 
@@ -729,12 +864,13 @@
             <div class="service-item">
                 <div class="service-content">
                     <div class="service-icon-box">📸</div>
-                    <h3>Application mobile d'extraction de données</h3>
+                    <h3>Comptabilité automatisée</h3>
                     <p>Prenez en photo vos factures, reçus et documents. L'IA extrait, analyse et classe automatiquement toutes les informations dans votre système comptable.</p>
                     <ul class="service-features">
-                        <li>Reconnaissance automatique des produits, montants et dates</li>
+                        <li>Reconnaissance automatique des montants et dates</li>
                         <li>Classification par catégorie (achat, dépense, facture...)</li>
-                        <li>Données prêtes pour votre comptabilité</li>
+                        <li>Séparation perso/pro automatique</li>
+                        <li>Export direct vers votre logiciel comptable</li>
                     </ul>
                 </div>
                 <div class="service-demo">
@@ -749,9 +885,10 @@
                     <h3>Assistant vocal intelligent</h3>
                     <p>Dictez vos notes, comptes-rendus ou idées. L'IA structure, résume et organise automatiquement vos informations vocales.</p>
                     <ul class="service-features">
+                        <li>Transcription en temps réel</li>
+                        <li>Structuration automatique par thème</li>
+                        <li>Résumés et points d'action</li>
                         <li>Recherche vocale dans votre base de données</li>
-                        <li>Retrouvez une info dictée il y a des semaines</li>
-                        <li>Rapport / Résumés et points d'actions structuré</li>
                     </ul>
                 </div>
                 <div class="service-demo">
@@ -763,12 +900,13 @@
             <div class="service-item">
                 <div class="service-content">
                     <div class="service-icon-box">📑</div>
-                    <h3>Gestion de données automatique</h3>
-                    <p>Déposez vos factures, contrats, relevés. L'IA lit, extrait et classe toutes les données automatiquement. Zéro saisie manuelle.</p>
+                    <h3>Analyse documentaire automatique</h3>
+                    <p>Téléversez vos contrats, rapports, emails. L'IA extrait les données clés, génère des synthèses et alerte sur les points importants.</p>
                     <ul class="service-features">
-                        <li>Extraction automatique des informations clés de tous vos documents</li>
-                        <li>Transfert direct vers vos tableaux Excel/CRM</li>
-                        <li>Fin de la double saisie manuelle</li>
+                        <li>Extraction de données structurées</li>
+                        <li>Génération de résumés exécutifs</li>
+                        <li>Détection des éléments critiques</li>
+                        <li>Comparaison automatique de documents</li>
                     </ul>
                 </div>
                 <div class="service-demo">
@@ -822,26 +960,89 @@
         </div>
     </section>
 
-    <!-- Final CTA Section -->
-    <section id="audit" class="cta-section">
-        <div class="cta-content">
-            <h2>Prêt à découvrir votre potentiel caché ?</h2>
-            <p>
-                Chaque jour sans automatisation, c'est du temps et de l'argent perdus. 
-                Notre audit gratuit vous révèle exactement combien vous pourriez gagner.
-            </p>
+    <!-- Services Complémentaires Section -->
+    <section class="complementary-section">
+        <div class="section-header">
+            <span class="section-tag">Au-delà de l'automatisation</span>
+            <h2>Vous avez d'autres besoins ?</h2>
+            <p>Chaque entreprise est unique. Nous proposons également des services digitaux sur-mesure.</p>
+        </div>
+        
+        <div class="complementary-grid">
+            <div class="complementary-card">
+                <div class="comp-icon">🌐</div>
+                <h3>Site web professionnel</h3>
+                <p>Création et hébergement de votre site vitrine ou e-commerce, design moderne et responsive.</p>
+            </div>
             
+            <div class="complementary-card">
+                <div class="comp-icon">💬</div>
+                <h3>Chatbot IA intelligent</h3>
+                <p>Assistant virtuel pour votre site web, WhatsApp ou support client, disponible 24/7.</p>
+            </div>
+            
+            <div class="complementary-card">
+                <div class="comp-icon">📧</div>
+                <h3>Automatisation emails</h3>
+                <p>Réponses automatiques intelligentes, séquences d'emails personnalisées selon le comportement de vos contacts.</p>
+            </div>
+            
+            <div class="complementary-card">
+                <div class="comp-icon">📊</div>
+                <h3>Tableaux de bord</h3>
+                <p>Visualisez vos données en temps réel, rapports automatisés et analyses de tendances pour mieux décider.</p>
+            </div>
+            
+            <div class="complementary-card">
+                <div class="comp-icon">🤖</div>
+                <h3>Solutions sur-mesure</h3>
+                <p>Un besoin spécifique ? Parlons-en lors de votre audit gratuit et créons la solution idéale ensemble.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section id="audit" class="form-section">
+        <div class="section-header">
+            <h2>Demandez votre audit gratuit</h2>
+            <p>Découvrez combien de temps et d'argent vous pourriez économiser</p>
+        </div>
+        
+        <div class="form-container">
             <div class="cta-highlight">
                 <p>✨ Audit 100% gratuit • Sans engagement • Résultats concrets ✨</p>
             </div>
 
-            <a href="mailto:contact@victoria.com?subject=Demande d'audit gratuit" class="btn-primary" style="font-size: 1.2rem; padding: 1.5rem 3rem;">
-                Demander mon audit gratuit →
-            </a>
+            <div id="formStatus" class="form-status"></div>
 
-            <p style="margin-top: 2rem; font-size: 0.95rem; color: var(--text-muted);">
-                Ou contactez-nous directement : contact@victoria.com
-            </p>
+            <form id="contactForm" class="contact-form" action="https://formspree.io/f/VOTRE_FORM_ID" method="POST">
+                <div class="form-group">
+                    <label for="name">Nom et Prénom *</label>
+                    <input type="text" id="name" name="name" required placeholder="Jean Dupont">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required placeholder="jean.dupont@entreprise.fr">
+                </div>
+
+                <div class="form-group">
+                    <label for="company">Entreprise *</label>
+                    <input type="text" id="company" name="company" required placeholder="Votre Entreprise SARL">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Téléphone *</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="06 12 34 56 78">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Décrivez brièvement vos besoins (optionnel)</label>
+                    <textarea id="message" name="message" placeholder="Quelles tâches répétitives prenez-vous du temps actuellement ?"></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Envoyer ma demande →</button>
+            </form>
         </div>
     </section>
 
@@ -859,6 +1060,47 @@
             </p>
         </div>
     </footer>
+
+    <script>
+        // Gestion du formulaire
+        const form = document.getElementById('contactForm');
+        const formStatus = document.getElementById('formStatus');
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = form.querySelector('.submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Envoi en cours...';
+            
+            formStatus.className = 'form-status';
+            formStatus.style.display = 'none';
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    formStatus.className = 'form-status success';
+                    formStatus.textContent = '✅ Merci ! Votre demande a été envoyée. Nous vous contacterons très rapidement.';
+                    form.reset();
+                } else {
+                    throw new Error('Erreur lors de l\'envoi');
+                }
+            } catch (error) {
+                formStatus.className = 'form-status error';
+                formStatus.textContent = '❌ Une erreur est survenue. Veuillez réessayer ou nous contacter directement par email.';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Envoyer ma demande →';
+            }
+        });
+    </script>
 
 </body>
 </html>
